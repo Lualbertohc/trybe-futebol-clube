@@ -4,7 +4,7 @@ import {
   bodyValidation,
   emailValidation,
   passwordValidation,
-  tokenValidation,
+//   tokenValidation,
 } from '../middleware/login';
 
 const loginRoutes = Router();
@@ -19,11 +19,11 @@ loginRoutes
     (req: Request, res: Response) => loginCrontroller.login(req, res),
   );
 
-loginRoutes
-  .get(
-    '/login/role',
-    tokenValidation,
-    (req: Request, res: Response) => loginCrontroller.login(req, res),
-  );
+// loginRoutes
+//   .get(
+//     '/login/role',
+//     tokenValidation,
+//     (req: Request, res: Response) => loginCrontroller.login(req, res),
+//   );
 
 export default loginRoutes;
