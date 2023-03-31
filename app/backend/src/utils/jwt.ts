@@ -8,6 +8,9 @@ const config: jwt.SignOptions = { expiresIn: '2d', algorithm: 'HS256' };
 
 const generate = (payload: IJwt) => jwt.sign(payload, TOKEN_SECRET, config);
 
-const authToken = (token: string) => jwt.verify(token, TOKEN_SECRET);
+const authToken = (token: string) => {
+  const user = jwt.verify(token, TOKEN_SECRET);
+  return { user };
+};
 
 export { generate, authToken };
