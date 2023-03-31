@@ -8,14 +8,14 @@ export default class TeamController {
     this._service = service;
   }
 
-  async findAll(_req: Request, res: Response) {
+  findAll = async (_req: Request, res: Response) => {
     const teams = await this._service.findAll();
     return res.status(200).json(teams);
-  }
+  };
 
-  async findById(req: Request, res: Response) {
+  findById = async (req: Request, res: Response) => {
     const { id } = req.params;
     const team = await this._service.findById(Number(id));
     return res.status(200).json(team);
-  }
+  };
 }

@@ -30,10 +30,13 @@ const passwordValidation = (req: Request, res: Response, next: NextFunction) => 
 const tokenValidation = (req: Request, res: Response, next: NextFunction) => {
   const { authorization } = req.headers;
   if (!authorization) return res.status(401).json({ message: 'Token not found' });
-  const { user } = authToken(authorization);
-  if (!user) return res.status(401).json({ message: 'Token must be a valid token' });
-  req.body = user;
-  next();
+  try {
+    const validate = authToken(authorization);
+    req.body.userToken = validate;
+    next();
+  } catch (e) {
+    return res.status(401).json({ message: 'Token must be a valid token' });
+  }
 };
 
 export {

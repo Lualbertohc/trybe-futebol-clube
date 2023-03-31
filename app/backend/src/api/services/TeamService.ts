@@ -5,12 +5,10 @@ import ITeamService from '../interfaces/ITeamService';
 export default class TeamService implements ITeamService {
   protected model: ModelStatic<Team> = Team;
 
-  async findAll(): Promise<Team[]> {
-    return this.model.findAll();
-  }
+  findAll = async (): Promise<Team[]> => this.model.findAll();
 
-  async findById(id: number): Promise<Team> {
+  findById = async (id: number): Promise<Team> => {
     const team = await this.model.findByPk(id);
     return team as unknown as Team;
-  }
+  };
 }
