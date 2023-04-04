@@ -17,7 +17,7 @@ export default class LoginController {
 
   role = (req: Request, res: Response) => {
     const { authorization } = req.headers;
-    const { userToken } = req.body;
-    if (authorization) return res.status(200).json({ role: userToken.role });
+    const { user } = req.body;
+    if (authorization) return res.status(200).json({ role: user.role });
   };
 }
