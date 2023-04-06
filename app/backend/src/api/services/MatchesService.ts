@@ -28,4 +28,6 @@ export default class MatchesService {
       },
     );
   };
+
+  finish = async (id: number) => this.model.update({ inProgress: false }, { where: { id } });
 }
