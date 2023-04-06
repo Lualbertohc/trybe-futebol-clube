@@ -1,6 +1,7 @@
 import { ModelStatic } from 'sequelize';
 import Matches from '../../database/models/Match';
 import Team from '../../database/models/Team';
+import { IInfo } from '../interfaces/IInfo';
 
 export default class MatchesService {
   protected model: ModelStatic<Matches> = Matches;
@@ -30,4 +31,13 @@ export default class MatchesService {
   };
 
   finish = async (id: number) => this.model.update({ inProgress: false }, { where: { id } });
+
+  update = async (id: number, info: IInfo) => {
+    this.model.update(
+      {
+        homeTeamGoal: info.homeTeamGoal, awayTeamGoal: info.awayTeamGoal,
+      },
+      { where: { id } },
+    );
+  };
 }

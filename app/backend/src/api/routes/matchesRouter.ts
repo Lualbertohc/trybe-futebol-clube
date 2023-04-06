@@ -13,7 +13,14 @@ matchesRoutes
   );
 
 matchesRoutes
-  .post(
+  .patch(
+    '/matches/:id',
+    tokenValidation,
+    (req: Request, res: Response) => matchesCrontroller.update(req, res),
+  );
+
+matchesRoutes
+  .patch(
     '/matches/:id/finish',
     tokenValidation,
     (req: Request, res: Response) => matchesCrontroller.finish(req, res),
