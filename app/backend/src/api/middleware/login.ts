@@ -33,6 +33,7 @@ const tokenValidation = (req: Request, res: Response, next: NextFunction) => {
   try {
     const validate = authToken(authorization);
     req.body.user = validate;
+    // res.locals.user = validate;
     next();
   } catch (e) {
     return res.status(401).json({ message: 'Token must be a valid token' });

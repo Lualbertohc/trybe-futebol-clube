@@ -8,8 +8,14 @@ const matchesCrontroller = new MatchesController();
 matchesRoutes
   .get(
     '/matches',
-    tokenValidation,
     (req: Request, res: Response) => matchesCrontroller.getMatches(req, res),
+  );
+
+matchesRoutes
+  .post(
+    '/matches',
+    tokenValidation,
+    (req: Request, res: Response) => matchesCrontroller.add(req, res),
   );
 
 matchesRoutes

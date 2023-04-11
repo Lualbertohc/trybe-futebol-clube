@@ -10,24 +10,38 @@ export default class MatchesController {
 
   getMatches = async (req: Request, res: Response) => {
     const { inProgress } = req.query;
-
-    if (!inProgress) {
-      const result = await this._service.getMatches();
-      return res.status(200).json(result);
+    const allMatches = await this._service.getMatches();
+    if (inProgress === 'true') {
+      const acting = allMatches.filter((e) => e.inProgress === true);
+      return res.status(200).json(acting);
     }
-
-    const filter = await this._service.progress(inProgress as string);
-    return res.status(200).json(filter);
+    if (inProgress === 'false') {
+      const finished = allMatches.filter((e) => e.inProgress === false);
+      return res.status(200).json(finished);
+    }
+    return res.status(200).json(allMatches);
   };
 
-  finish = async (req: Request, res: Response) => {
-    await this._service.finish(Number(req.params));
-    return res.status(200).json({ message: 'Finished' });
+  add = async (req: Request, res: Response) => {
+    const match = req.body;
+    if (match.homeTeamId === match.awayTeamId) {
+      return res.status(422)
+        .json({ message: 'It is not possible to create a match with two equal teams' });
+    }
+    const created = await this._service.add(match);
+    const { message } = created;
+    if (message) return res.status(404).json({ message });
+    return res.status(201).json(created);
   };
 
   update = async (req: Request, res: Response) => {
     const info = req.body;
     await this._service.update(Number(req.params), info);
     return res.status(200).json({ message: 'Updated' });
+  };
+
+  finish = async (req: Request, res: Response) => {
+    await this._service.finish(Number(req.params));
+    return res.status(200).json({ message: 'Finished' });
   };
 }

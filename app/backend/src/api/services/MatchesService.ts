@@ -1,33 +1,47 @@
 import { ModelStatic } from 'sequelize';
 import Matches from '../../database/models/Match';
 import Team from '../../database/models/Team';
-import { IInfo } from '../interfaces/IInfo';
+import IMatch from '../interfaces/IMatch';
+import IError from '../interfaces/IError';
+import IInfo from '../interfaces/IInfo';
 
 export default class MatchesService {
   protected model: ModelStatic<Matches> = Matches;
 
-  getMatches = async (): Promise<Matches[]> => this.model.findAll(
-    {
-      include: [
-        { model: Team, as: 'homeTeam', attributes: ['teamName'] },
-        { model: Team, as: 'awayTeam', attributes: ['teamName'] },
-      ],
-    },
-  );
-
-  progress = async (inProgress: string): Promise<Matches[]> => {
-    let verify;
-    if (inProgress === 'true') verify = true;
-    if (inProgress === 'false') verify = false;
-    return this.model.findAll(
-      {
-        include: [
+  getMatches = async (inProgress?: boolean) => {
+    if (inProgress) {
+      const result = await this.model.findAll(
+        { include: [
           { model: Team, as: 'homeTeam', attributes: ['teamName'] },
           { model: Team, as: 'awayTeam', attributes: ['teamName'] },
         ],
-        where: { inProgress: verify },
+        where: { inProgress } },
+      );
+      return result;
+    }
+    const result = await this.model.findAll(
+      { include: [
+        { model: Team, as: 'homeTeam', attributes: ['teamName'] },
+        { model: Team, as: 'awayTeam', attributes: ['teamName'] },
+      ],
       },
     );
+    return result;
+  };
+
+  add = async (match: IMatch): Promise<IMatch | IError> => {
+    const {
+      homeTeamId,
+      awayTeamId,
+      awayTeamGoals,
+      homeTeamGoals,
+    } = match;
+    const verOne = await this.model.findOne({ where: { homeTeamId } });
+    const verTwo = await this.model.findOne({ where: { awayTeamId } });
+    if (!verOne || !verTwo) return { status: 404, message: 'There is no team witch such id!' };
+    const result = await this.model
+      .create({ homeTeamId, awayTeamId, awayTeamGoals, homeTeamGoals, inProgress: true });
+    return result;
   };
 
   finish = async (id: number) => this.model.update({ inProgress: false }, { where: { id } });
