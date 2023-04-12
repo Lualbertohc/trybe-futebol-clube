@@ -38,7 +38,7 @@ export default class MatchesService {
     } = match;
     const verOne = await this.model.findOne({ where: { homeTeamId } });
     const verTwo = await this.model.findOne({ where: { awayTeamId } });
-    if (!verOne || !verTwo) return { status: 404, message: 'There is no team witch such id!' };
+    if (!verOne || !verTwo) return { status: 404, message: 'There is no team with such id!' };
     const result = await this.model
       .create({ homeTeamId, awayTeamId, awayTeamGoals, homeTeamGoals, inProgress: true });
     return result;

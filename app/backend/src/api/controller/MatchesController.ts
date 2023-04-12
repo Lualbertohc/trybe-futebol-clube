@@ -35,8 +35,7 @@ export default class MatchesController {
   };
 
   update = async (req: Request, res: Response) => {
-    const info = req.body;
-    await this._service.update(Number(req.params), info);
+    await this._service.update(Number(req.params), req.body);
     return res.status(200).json({ message: 'Updated' });
   };
 

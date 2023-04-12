@@ -38,7 +38,6 @@ const tokenValidation = (req: Request, res: Response, next: NextFunction) => {
   } catch (e) {
     return res.status(401).json({ message: 'Token must be a valid token' });
   }
-  next();
 };
 
 export {
