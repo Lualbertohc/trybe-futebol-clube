@@ -8,8 +8,13 @@ export default class LeaderboardController {
     this._service = new LeaderboardService();
   }
 
-  get = async (_req: Request, res: Response) => {
-    const result = await this._service.get();
+  home = async (_req: Request, res: Response) => {
+    const result = await this._service.home();
+    return res.status(200).json(result);
+  };
+
+  away = async (_req: Request, res: Response) => {
+    const result = await this._service.away();
     return res.status(200).json(result);
   };
 }
