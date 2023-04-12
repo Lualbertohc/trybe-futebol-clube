@@ -1,4 +1,4 @@
 export default interface IInfo {
-  homeTeamGoal: number,
-  awayTeamGoal: number,
+  homeTeamGoals: number,
+  awayTeamGoals: number,
 }

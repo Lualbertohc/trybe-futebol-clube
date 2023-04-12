@@ -49,7 +49,7 @@ export default class MatchesService {
   update = async (id: number, info: IInfo) => {
     this.model.update(
       {
-        homeTeamGoal: info.homeTeamGoal, awayTeamGoal: info.awayTeamGoal,
+        homeTeamGoals: info.homeTeamGoals, awayTeamGoals: info.awayTeamGoals,
       },
       { where: { id } },
     );

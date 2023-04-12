@@ -35,12 +35,15 @@ export default class MatchesController {
   };
 
   update = async (req: Request, res: Response) => {
-    await this._service.update(Number(req.params), req.body);
+    const { id } = req.params;
+    const info = req.body;
+    await this._service.update(Number(id), info);
     return res.status(200).json({ message: 'Updated' });
   };
 
   finish = async (req: Request, res: Response) => {
-    await this._service.finish(Number(req.params));
+    const { id } = req.params;
+    await this._service.finish(Number(id));
     return res.status(200).json({ message: 'Finished' });
   };
 }
