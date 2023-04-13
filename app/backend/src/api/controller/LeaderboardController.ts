@@ -17,4 +17,9 @@ export default class LeaderboardController {
     const result = await this._service.away();
     return res.status(200).json(result);
   };
+
+  teams = async (_req: Request, res: Response) => {
+    const result = await this._service.teams();
+    return res.status(200).json(result);
+  };
 }

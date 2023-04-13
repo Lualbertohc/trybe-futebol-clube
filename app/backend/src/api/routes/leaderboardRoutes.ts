@@ -6,6 +6,12 @@ const leaderboardCrontroller = new LeaderboardController();
 
 leaderboardRoutes
   .get(
+    '/leaderboard',
+    (req: Request, res: Response) => leaderboardCrontroller.teams(req, res),
+  );
+
+leaderboardRoutes
+  .get(
     '/leaderboard/home',
     (req: Request, res: Response) => leaderboardCrontroller.home(req, res),
   );
