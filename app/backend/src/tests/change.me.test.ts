@@ -1,35 +1,60 @@
-import Sinon, * as sinon from 'sinon';
+// import Sinon, * as sinon from 'sinon';
+import * as sinon from 'sinon';
 import * as chai from 'chai';
 // @ts-ignore
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
-import Example from '../database/models/ExampleModel';
-
 import { Response } from 'superagent';
-
-import { Model } from 'sequelize';
+// import Match from '../database/models/Match';
 import Team from '../database/models/Team';
 
 chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Seu teste', () => {
-  afterEach(() => {
-    Sinon.restore();
-  })
+describe('Teste na rota teams', () => {
 
-  it('deve fazer um findall na tebela de teams', async () => {
-    const mock = [
-      {
-        id: 1,
-        teamName: "Avaí/Kindermann"
-      },
-    ]
+    let chaiHttpResponse: Response;
+  
+    beforeEach(async () => {
+      sinon.stub(Team, 'findOne').resolves({ 
+          id: 10,
+          teamName: "Minas Brasília"
+      } as Team);
+    });
+  
+    afterEach(() => {
+      (Team.findOne as sinon.SinonStub).restore();
+    })
+  
+    it('get teams', async () => {
+      chaiHttpResponse = await chai.request(app).get('/teams')
+      expect(chaiHttpResponse.status).to.be.deep.equal(200);
+    });
+  
+    it('get by id teams', async () => {
+      chaiHttpResponse = await chai.request(app).get('/teams/10')
+      expect(chaiHttpResponse.status).to.be.deep.equal(200);
+    });
+  });
 
-    Sinon.stub(Model, 'findAll').resolves(mock as Team[]);
-  })
+  describe('Teste na rota matches', () => {
+
+    let chaiHttpResponse: Response;
+  
+    beforeEach(() => { sinon.restore() })
+  
+    it('getAll nas partidas', async () => {
+      chaiHttpResponse = await chai.request(app).get('/matches')
+      expect(chaiHttpResponse.status).to.be.deep.equal(200);
+    });
+  
+    it('testa o progresso', async () => {
+      chaiHttpResponse = await chai.request(app).get('/matches?inProgress=true')
+      expect(chaiHttpResponse.status).to.be.deep.equal(200);
+    });
+  });
   /**
    * Exemplo do uso de stubs com tipos
    */
@@ -59,4 +84,3 @@ describe('Seu teste', () => {
   it('Seu sub-teste', () => {
     expect(false).to.be.eq(true);
   });
-});
