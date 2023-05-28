@@ -1,13 +1,15 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Trybe Futebol Clube :soccer:
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+Descrição:
+Este projeto é uma aplicação full stack que simula uma tabela de campeonato de futebol. Desenvolvida em TypeScript, utiliza uma abordagem orientada a objetos para a sua implementação. A aplicação emprega a linguagem TypeScript tanto no backend quanto no frontend.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+O banco de dados é construído utilizando o Sequelize como ORM (Object-Relational Mapping) e o MySQL como sistema de gerenciamento de banco de dados. As operações básicas de criação, leitura, atualização e exclusão (CRUD) são realizadas por meio de uma estrutura em camadas, dividindo a lógica em modelos (Models), serviços (Services) e controladores (Controllers).
+
+Recursos e Tecnologias:
+- TypeScript: Linguagem de programação orientada a objetos que oferece tipagem estática e recursos modernos para o desenvolvimento.
+- Sequelize: ORM que permite a interação com o banco de dados MySQL de forma simplificada e intuitiva.
+- MySQL: Sistema de gerenciamento de banco de dados relacional usado para armazenar as informações da tabela de campeonato.
+- Estrutura em Camadas: A aplicação é organizada em modelos, serviços e controladores, proporcionando uma separação clara de responsabilidades.
+- Dokcer: 
+
+Com esta aplicação, é possível simular uma tabela de campeonato de futebol, realizando operações CRUD nos dados do campeonato. Essa é uma excelente oportunidade para aprender mais sobre o desenvolvimento full stack em TypeScript, o uso de ORMs como o Sequelize e a criação de estruturas em camadas para um código organizado e de fácil manutenção.
