@@ -10,6 +10,6 @@ Recursos e Tecnologias:
 - Sequelize: ORM que permite a interação com o banco de dados MySQL de forma simplificada e intuitiva.
 - MySQL: Sistema de gerenciamento de banco de dados relacional usado para armazenar as informações da tabela de campeonato.
 - Estrutura em Camadas: A aplicação é organizada em modelos, serviços e controladores, proporcionando uma separação clara de responsabilidades.
-- Dokcer: 
+- Docker: Plataforma que facilita o empacotamento e a implantação da aplicação em contêineres isolados.
 
 Com esta aplicação, é possível simular uma tabela de campeonato de futebol, realizando operações CRUD nos dados do campeonato. Essa é uma excelente oportunidade para aprender mais sobre o desenvolvimento full stack em TypeScript, o uso de ORMs como o Sequelize e a criação de estruturas em camadas para um código organizado e de fácil manutenção.
