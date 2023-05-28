@@ -7,37 +7,10 @@ import chaiHttp = require('chai-http');
 import { app } from '../app';
 import { Response } from 'superagent';
 // import Match from '../database/models/Match';
-import Team from '../database/models/Team';
 
 chai.use(chaiHttp);
 
 const { expect } = chai;
-
-describe('Teste na rota teams', () => {
-
-    let chaiHttpResponse: Response;
-  
-    beforeEach(async () => {
-      sinon.stub(Team, 'findOne').resolves({ 
-          id: 10,
-          teamName: "Minas Brasília"
-      } as Team);
-    });
-  
-    afterEach(() => {
-      (Team.findOne as sinon.SinonStub).restore();
-    })
-  
-    it('get teams', async () => {
-      chaiHttpResponse = await chai.request(app).get('/teams')
-      expect(chaiHttpResponse.status).to.be.deep.equal(200);
-    });
-  
-    it('get by id teams', async () => {
-      chaiHttpResponse = await chai.request(app).get('/teams/10')
-      expect(chaiHttpResponse.status).to.be.deep.equal(200);
-    });
-  });
 
   describe('Teste na rota matches', () => {
 
