@@ -1,7 +1,6 @@
 # Trybe Futebol Clube :soccer:
 
-Descrição:
-Este projeto é uma aplicação full stack que simula uma tabela de campeonato de futebol. Desenvolvida em TypeScript, utiliza uma abordagem orientada a objetos para a sua implementação. A aplicação emprega a linguagem TypeScript no backend e Jvascript no frontend.
+Este projeto é uma aplicação full stack de tabela de campeonato de futebol. Desenvolvida em TypeScript, utiliza uma abordagem orientada a objetos para a sua implementação. A aplicação emprega a linguagem TypeScript no backend e Javascript no frontend.
 
 O banco de dados é construído utilizando o Sequelize como ORM (Object-Relational Mapping) e o MySQL como sistema de gerenciamento de banco de dados. As operações básicas de criação, leitura, atualização e exclusão (CRUD) são realizadas por meio de uma estrutura em camadas, dividindo a lógica em modelos (Models), serviços (Services) e controladores (Controllers).
 
